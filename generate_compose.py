@@ -86,6 +86,10 @@ services:
       - ./output:/app/output
     command: ["scenario.toml", "output/results.json"]
     network_mode: host
+    depends_on:
+      green-agent:
+        condition: service_healthy
+{participant_depends}
 """
 
 PARTICIPANT_TEMPLATE = """  {name}:
@@ -173,6 +177,8 @@ def format_depends_on(services: list) -> str:
 def generate_docker_compose(scenario: dict[str, Any]) -> str:
     green = scenario["green_agent"]
     participants = scenario.get("participants", [])
+    
+    participant_names = [p["name"] for p in participants]
 
     # Assign unique ports for host networking: green-agent on 9009, participants on 9010+
     participant_services = "\n".join([
@@ -184,12 +190,22 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
         )
         for idx, p in enumerate(participants)
     ])
+    
+    # Generate depends_on for participants (agentbeats-client depends on them)
+    participant_depends = ""
+    if participant_names:
+        depends_lines = []
+        for name in participant_names:
+            depends_lines.append(f"      {name}:")
+            depends_lines.append(f"        condition: service_healthy")
+        participant_depends = "\n" + "\n".join(depends_lines)
 
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
         green_port=DEFAULT_PORT,
         green_env=format_env_vars(green.get("env", {})),
-        participant_services=participant_services
+        participant_services=participant_services,
+        participant_depends=participant_depends
     )
 
 
