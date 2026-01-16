@@ -66,6 +66,7 @@ services:
     command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://localhost:{green_port}"]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./logs:/home/agent/logs
     environment:{green_env}
     user: root
     privileged: true
@@ -98,6 +99,8 @@ PARTICIPANT_TEMPLATE = """  {name}:
     platform: linux/amd64
     container_name: {name}
     command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://localhost:{port}"]
+    volumes:
+      - ./logs:/home/agent/logs
     environment:{env}
     network_mode: host
     healthcheck:
