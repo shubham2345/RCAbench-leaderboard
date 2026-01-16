@@ -9,4 +9,4 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [config]
 task_ids = [28777]  # Start with 2 test tasks
-# Testing workflow - Purple agent on port 9019 as required
+# Testing workflow - Purple agent on port 9019 as
