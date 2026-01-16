@@ -66,6 +66,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:{green_env}
+    user: root
+    privileged: true
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{green_port}/.well-known/agent-card.json"]
       interval: 5s

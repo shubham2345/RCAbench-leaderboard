@@ -9,4 +9,4 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [config]
 task_ids = [28777, 51603]  # Start with 2 test tasks
-# Testing workflow 
+# Testing workflow - Docker permissions fixed
