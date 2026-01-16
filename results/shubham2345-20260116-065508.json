@@ -1,0 +1,29 @@
+{
+  "participants": {
+    "purple_agent": "019bc430-5988-7a80-930b-7e08617c0a5e"
+  },
+  "results": [
+    {
+      "domain": "arvo_rca",
+      "file_acc_mean": 1.0,
+      "func_recall_mean": 1.0,
+      "func_precision_mean": 0.5,
+      "line_iou_mean": 0.3170731707317073,
+      "n_tasks": 1,
+      "task_metrics": {
+        "28777": {
+          "task_id": "arvo:28777",
+          "agent_id": "placeholder",
+          "timestamp": 1768546496.6246865,
+          "file_acc": 1.0,
+          "func_recall": 1.0,
+          "func_precision": 0.5,
+          "line_iou": 0.3170731707317073,
+          "n_gt": 1,
+          "n_pred": 2
+        }
+      },
+      "time_used": 129.96552681922913
+    }
+  ]
+}

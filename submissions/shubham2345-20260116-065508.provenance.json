@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "ghcr.io/jianhongtu/rcabench/rcabench-green-agent@sha256:302444c2768162a4aeac49f8f95fe12b4a283d06cff82b268fb418b64b57dc58",
+    "purple_agent": "ghcr.io/jianhongtu/rcabench/rcabench-purple-agent@sha256:c6f8dcff7b626a73425fbf35d65b80b8c80f378b3c0177592954fc5dcaf01b5d",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-01-16T06:55:08Z",
+  "github_actions": {
+    "run_url": "https://github.com/shubham2345/RCAbench-leaderboard/actions/runs/21058304222",
+    "run_logs_url": "https://api.github.com/repos/shubham2345/RCAbench-leaderboard/actions/runs/21058304222/logs",
+    "ref": "refs/heads/test-assessment",
+    "sha": "bc3c49a7f8bcd98f43883f29aa94b36ec358a3df",
+    "repository_url": "https://github.com/shubham2345/RCAbench-leaderboard",
+    "workflow_ref": "shubham2345/RCAbench-leaderboard/.github/workflows/run-scenario.yml@refs/heads/test-assessment",
+    "workflow_sha": "bc3c49a7f8bcd98f43883f29aa94b36ec358a3df"
+  }
+}
