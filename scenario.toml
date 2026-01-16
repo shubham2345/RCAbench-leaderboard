@@ -8,4 +8,6 @@ name = "purple_agent"
 env = { OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [config]
-task_ids = [28777, 51603]  # Start with 2 test tasks
+task_ids = [28777]  # Testing with single task
+# Testing workflow - Added /tmp/rcabench volume mount for ARVO workspace
+#task status compl
