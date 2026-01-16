@@ -62,21 +62,19 @@ services:
     image: {green_image}
     platform: linux/amd64
     container_name: green-agent
-    command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://green-agent:{green_port}"]
+    command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://localhost:{green_port}"]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:{green_env}
     user: root
     privileged: true
+    network_mode: host
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{green_port}/.well-known/agent-card.json"]
       interval: 5s
       timeout: 3s
       retries: 10
       start_period: 30s
-    depends_on:{green_depends}
-    networks:
-      - agent-network
 
 {participant_services}
   agentbeats-client:
@@ -87,33 +85,26 @@ services:
       - ./a2a-scenario.toml:/app/scenario.toml
       - ./output:/app/output
     command: ["scenario.toml", "output/results.json"]
-    depends_on:{client_depends}
-    networks:
-      - agent-network
-
-networks:
-  agent-network:
-    driver: bridge
+    network_mode: host
 """
 
 PARTICIPANT_TEMPLATE = """  {name}:
     image: {image}
     platform: linux/amd64
     container_name: {name}
-    command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://{name}:{port}"]
+    command: ["--host", "0.0.0.0", "--port", "{port}", "--card-url", "http://localhost:{port}"]
     environment:{env}
+    network_mode: host
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{port}/.well-known/agent-card.json"]
       interval: 5s
       timeout: 3s
       retries: 10
       start_period: 30s
-    networks:
-      - agent-network
 """
 
 A2A_SCENARIO_TEMPLATE = """[green_agent]
-endpoint = "http://green-agent:{green_port}"
+endpoint = "http://localhost:{green_port}"
 
 {participants}
 {config}"""
@@ -183,27 +174,22 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
     green = scenario["green_agent"]
     participants = scenario.get("participants", [])
 
-    participant_names = [p["name"] for p in participants]
-
+    # Assign unique ports for host networking: green-agent on 9009, participants on 9010+
     participant_services = "\n".join([
         PARTICIPANT_TEMPLATE.format(
             name=p["name"],
             image=p["image"],
-            port=DEFAULT_PORT,
+            port=DEFAULT_PORT + idx + 1,
             env=format_env_vars(p.get("env", {}))
         )
-        for p in participants
+        for idx, p in enumerate(participants)
     ])
-
-    all_services = ["green-agent"] + participant_names
 
     return COMPOSE_TEMPLATE.format(
         green_image=green["image"],
         green_port=DEFAULT_PORT,
         green_env=format_env_vars(green.get("env", {})),
-        green_depends=format_depends_on(participant_names),
-        participant_services=participant_services,
-        client_depends=format_depends_on(all_services)
+        participant_services=participant_services
     )
 
 
@@ -212,11 +198,13 @@ def generate_a2a_scenario(scenario: dict[str, Any]) -> str:
     participants = scenario.get("participants", [])
 
     participant_lines = []
-    for p in participants:
+    for idx, p in enumerate(participants):
+        # Assign unique ports for host networking: participants on 9010+
+        port = DEFAULT_PORT + idx + 1
         lines = [
             f"[[participants]]",
             f"role = \"{p['name']}\"",
-            f"endpoint = \"http://{p['name']}:{DEFAULT_PORT}\"",
+            f"endpoint = \"http://localhost:{port}\"",
         ]
         if "agentbeats_id" in p:
             lines.append(f"agentbeats_id = \"{p['agentbeats_id']}\"")
