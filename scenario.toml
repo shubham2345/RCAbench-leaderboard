@@ -1,16 +1,11 @@
 [green_agent]
-agentbeats_id = ""
-env = { API_KEY = "${GITHUB_SECRET_NAME}", LOG_LEVEL = "INFO" }
+agentbeats_id = "019bc42c-a4a9-74f1-98cc-6804c5dce0b2"  # Paste green agent ID here
+env = { }
 
 [[participants]]
-agentbeats_id = ""
-name = "role_1_name"
-env = {}
-
-[[participants]]
-agentbeats_id = ""
-name = "role_2_name"
-env = {}
+agentbeats_id = "019bc430-5988-7a80-930b-7e08617c0a5e"  # Paste purple agent ID here
+name = "purple_agent"
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [config]
-# Add your assessment config here
+task_ids = [28777, 51603]  # Start with 2 test tasks
