@@ -183,7 +183,18 @@ def format_depends_on(services: list) -> str:
 def generate_docker_compose(scenario: dict[str, Any]) -> str:
     green = scenario["green_agent"]
     participants = scenario.get("participants", [])
-    
+
+    # Get model from environment variable or use default
+    model = os.getenv("MODEL", "gpt-4o-mini")
+
+    # Add MODEL environment variable to purple_agent if it exists
+    for p in participants:
+        if p["name"] == "purple_agent":
+            p_env = p.get("env", {})
+            p_env["MODEL"] = model
+            p["env"] = p_env
+            break
+
     participant_names = [p["name"] for p in participants]
 
     # Assign unique ports for host networking: green-agent on 9009, participants on 9019+
