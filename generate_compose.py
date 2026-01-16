@@ -102,6 +102,7 @@ PARTICIPANT_TEMPLATE = """  {name}:
     volumes:
       - ./logs:/home/agent/logs
     environment:{env}
+    user: root
     network_mode: host
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:{port}/.well-known/agent-card.json"]
