@@ -66,6 +66,7 @@ services:
     command: ["--host", "0.0.0.0", "--port", "{green_port}", "--card-url", "http://localhost:{green_port}"]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/rcabench:/tmp/rcabench
       - ./logs:/home/agent/logs
     environment:{green_env}
     user: root
