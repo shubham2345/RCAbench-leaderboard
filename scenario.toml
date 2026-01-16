@@ -10,3 +10,4 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 [config]
 task_ids = [28777]  # Testing with single task
 # Testing workflow - Fixed logs permission with user: root
+
