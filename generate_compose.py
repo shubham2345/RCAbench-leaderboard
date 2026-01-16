@@ -53,6 +53,7 @@ A2A_SCENARIO_PATH = "a2a-scenario.toml"
 ENV_PATH = ".env.example"
 
 DEFAULT_PORT = 9009
+PARTICIPANT_BASE_PORT = 9019  # Port for first participant (as required by scenario.toml)
 DEFAULT_ENV_VARS = {"PYTHONUNBUFFERED": "1"}
 
 COMPOSE_TEMPLATE = """# Auto-generated from scenario.toml
@@ -180,12 +181,12 @@ def generate_docker_compose(scenario: dict[str, Any]) -> str:
     
     participant_names = [p["name"] for p in participants]
 
-    # Assign unique ports for host networking: green-agent on 9009, participants on 9010+
+    # Assign unique ports for host networking: green-agent on 9009, participants on 9019+
     participant_services = "\n".join([
         PARTICIPANT_TEMPLATE.format(
             name=p["name"],
             image=p["image"],
-            port=DEFAULT_PORT + idx + 1,
+            port=PARTICIPANT_BASE_PORT + idx,
             env=format_env_vars(p.get("env", {}))
         )
         for idx, p in enumerate(participants)
@@ -215,8 +216,8 @@ def generate_a2a_scenario(scenario: dict[str, Any]) -> str:
 
     participant_lines = []
     for idx, p in enumerate(participants):
-        # Assign unique ports for host networking: participants on 9010+
-        port = DEFAULT_PORT + idx + 1
+        # Assign unique ports for host networking: participants on 9019+
+        port = PARTICIPANT_BASE_PORT + idx
         lines = [
             f"[[participants]]",
             f"role = \"{p['name']}\"",
