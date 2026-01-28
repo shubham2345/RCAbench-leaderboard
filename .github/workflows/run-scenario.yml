@@ -26,6 +26,8 @@ jobs:
         run: pip install tomli tomli-w pyyaml requests
 
       - name: Generate docker-compose.yml
+        env:
+          MODEL: ${{ secrets.MODEL }}
         run: python generate_compose.py --scenario scenario.toml
 
       - name: Pull images
