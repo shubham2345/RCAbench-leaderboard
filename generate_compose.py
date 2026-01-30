@@ -68,6 +68,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/rcabench:/tmp/rcabench
       - ./logs:/home/agent/logs
+      - ./successful_task_ids.txt:/app/successful_task_ids.txt
     environment:{green_env}
     user: root
     privileged: true
