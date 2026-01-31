@@ -1,0 +1,51 @@
+{
+  "participants": {
+    "purple_agent": "019bc430-5988-7a80-930b-7e08617c0a5e"
+  },
+  "results": [
+    {
+      "domain": "arvo_rca",
+      "file_acc_mean": 0.6666666666666666,
+      "func_recall_mean": 0.3333333333333333,
+      "func_precision_mean": 0.1111111111111111,
+      "line_iou_mean": 0.2622222222222222,
+      "n_tasks": 3,
+      "task_metrics": {
+        "43004": {
+          "task_id": "arvo:43004",
+          "agent_id": "placeholder",
+          "timestamp": 1769893002.3861184,
+          "file_acc": 0.0,
+          "func_recall": 0.0,
+          "func_precision": 0.0,
+          "line_iou": 0.0,
+          "n_gt": 1,
+          "n_pred": 3
+        },
+        "18152": {
+          "task_id": "arvo:18152",
+          "agent_id": "placeholder",
+          "timestamp": 1769893103.5997012,
+          "file_acc": 1.0,
+          "func_recall": 1.0,
+          "func_precision": 0.3333333333333333,
+          "line_iou": 0.7866666666666666,
+          "n_gt": 1,
+          "n_pred": 3
+        },
+        "36611": {
+          "task_id": "arvo:36611",
+          "agent_id": "placeholder",
+          "timestamp": 1769893229.1965163,
+          "file_acc": 1.0,
+          "func_recall": 0.0,
+          "func_precision": 0.0,
+          "line_iou": 0.0,
+          "n_gt": 1,
+          "n_pred": 3
+        }
+      },
+      "time_used": 319.18187642097473
+    }
+  ]
+}
