@@ -9,7 +9,7 @@ env = { OPENAI_API_KEY = "${OPENAI_API_KEY}" }
 
 [config]
 #task_ids = [28777]  # Testing with single task
-# Testing workflow - Added /tmp/rcabench volume mount for ARVO workspace v4
+# Testing workflow - Added /tmp/rcabench volume mount for ARVO workspace v5
 #task status compl
 task_ids_file = "/app/successful_task_ids.txt"
 num_tasks = 3
