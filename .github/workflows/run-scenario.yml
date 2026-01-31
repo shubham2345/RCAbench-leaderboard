@@ -93,16 +93,12 @@ jobs:
           echo "unique_name=$UNIQUE_NAME" >> $GITHUB_OUTPUT
           echo "branch_name=submission-${UNIQUE_NAME}" >> $GITHUB_OUTPUT
 
-      - name: Copy files to submission directory (replace old results)
+      - name: Save new results temporarily
         run: |
-          # Remove old results and submissions (keep .gitkeep)
-          find results/ -type f ! -name '.gitkeep' -delete
-          find submissions/ -type f ! -name '.gitkeep' -delete
-          
-          # Add new results
-          cp scenario.toml submissions/${{ steps.metadata.outputs.unique_name }}.toml
-          cp output/results.json results/${{ steps.metadata.outputs.unique_name }}.json
-          cp output/provenance.json submissions/${{ steps.metadata.outputs.unique_name }}.provenance.json
+          mkdir -p /tmp/new_results
+          cp scenario.toml /tmp/new_results/${{ steps.metadata.outputs.unique_name }}.toml
+          cp output/results.json /tmp/new_results/${{ steps.metadata.outputs.unique_name }}.json
+          cp output/provenance.json /tmp/new_results/${{ steps.metadata.outputs.unique_name }}.provenance.json
 
       - name: Determine target repository
         id: target
@@ -118,6 +114,17 @@ jobs:
           git remote add upstream https://github.com/${{ steps.target.outputs.repo }}.git
           git fetch upstream
           git checkout -b ${{ steps.metadata.outputs.branch_name }} upstream/main
+
+      - name: Replace old results with new
+        run: |
+          # Remove old results and submissions (keep .gitkeep)
+          find results/ -type f ! -name '.gitkeep' -delete
+          find submissions/ -type f ! -name '.gitkeep' -delete
+          
+          # Copy new results from temp location
+          cp /tmp/new_results/${{ steps.metadata.outputs.unique_name }}.toml submissions/
+          cp /tmp/new_results/${{ steps.metadata.outputs.unique_name }}.json results/
+          cp /tmp/new_results/${{ steps.metadata.outputs.unique_name }}.provenance.json submissions/
 
       - name: Commit results
         run: |
