@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: write
       packages: read
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -101,11 +102,11 @@ jobs:
       - name: Determine target repository
         id: target
         env:
-            GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-            PARENT_REPO=$(gh api repos/${{ github.repository }} --jq '.parent.full_name // "${{ github.repository }}"')
-            echo "Target repository: $PARENT_REPO"
-            echo "repo=$PARENT_REPO" >> $GITHUB_OUTPUT
+          PARENT_REPO=$(gh api repos/${{ github.repository }} --jq '.parent.full_name // "${{ github.repository }}"')
+          echo "Target repository: $PARENT_REPO"
+          echo "repo=$PARENT_REPO" >> $GITHUB_OUTPUT
 
       - name: Create submission branch
         run: |
@@ -124,12 +125,27 @@ jobs:
           git push origin ${{ steps.metadata.outputs.branch_name }}
           echo "::notice title=Submission Branch Created::Your results are ready for submission on branch: ${{ steps.metadata.outputs.branch_name }}"
 
-      - name: Output PR link
+      - name: Create Pull Request
+        id: create-pr
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          echo "### Submit your results" >> $GITHUB_STEP_SUMMARY
-          echo "[Click here to open a pull request](https://github.com/${{ steps.target.outputs.repo }}/compare/main...${{ github.repository_owner }}:${{ github.event.repository.name }}:${{ steps.metadata.outputs.branch_name }}?expand=1)" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "⚠️ When creating the PR, UNCHECK 'Allow edits and access to secrets by maintainers' to protect your secrets." >> $GITHUB_STEP_SUMMARY
+          PR_URL=$(gh pr create \
+            --repo ${{ steps.target.outputs.repo }} \
+            --head ${{ github.repository_owner }}:${{ steps.metadata.outputs.branch_name }} \
+            --base main \
+            --title "Submission: ${{ steps.metadata.outputs.unique_name }}" \
+            --body "Automated submission from workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}")
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+          echo "### Pull Request Created" >> $GITHUB_STEP_SUMMARY
+          echo "PR: $PR_URL" >> $GITHUB_STEP_SUMMARY
+
+      - name: Merge Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge ${{ steps.create-pr.outputs.pr_url }} --merge --delete-branch
+          echo "### Pull Request Merged" >> $GITHUB_STEP_SUMMARY
 
       - name: Cleanup
         if: always()
