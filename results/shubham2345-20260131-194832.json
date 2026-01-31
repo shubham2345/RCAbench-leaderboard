@@ -1,0 +1,51 @@
+{
+  "participants": {
+    "purple_agent": "019bc430-5988-7a80-930b-7e08617c0a5e"
+  },
+  "results": [
+    {
+      "domain": "arvo_rca",
+      "file_acc_mean": 1.0,
+      "func_recall_mean": 0.6666666666666666,
+      "func_precision_mean": 0.2222222222222222,
+      "line_iou_mean": 0.2487453314659197,
+      "n_tasks": 3,
+      "task_metrics": {
+        "16820": {
+          "task_id": "arvo:16820",
+          "agent_id": "placeholder",
+          "timestamp": 1769888686.8539746,
+          "file_acc": 1.0,
+          "func_recall": 1.0,
+          "func_precision": 0.3333333333333333,
+          "line_iou": 0.3229166666666667,
+          "n_gt": 1,
+          "n_pred": 3
+        },
+        "49461": {
+          "task_id": "arvo:49461",
+          "agent_id": "placeholder",
+          "timestamp": 1769888798.373017,
+          "file_acc": 1.0,
+          "func_recall": 0.0,
+          "func_precision": 0.0,
+          "line_iou": 0.0,
+          "n_gt": 1,
+          "n_pred": 3
+        },
+        "49248": {
+          "task_id": "arvo:49248",
+          "agent_id": "placeholder",
+          "timestamp": 1769888901.4825134,
+          "file_acc": 1.0,
+          "func_recall": 1.0,
+          "func_precision": 0.3333333333333333,
+          "line_iou": 0.42331932773109243,
+          "n_gt": 2,
+          "n_pred": 3
+        }
+      },
+      "time_used": 330.226357460022
+    }
+  ]
+}
