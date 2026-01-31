@@ -1,0 +1,51 @@
+{
+  "participants": {
+    "purple_agent": "019bc430-5988-7a80-930b-7e08617c0a5e"
+  },
+  "results": [
+    {
+      "domain": "arvo_rca",
+      "file_acc_mean": 0.75,
+      "func_recall_mean": 0.4166666666666667,
+      "func_precision_mean": 0.2222222222222222,
+      "line_iou_mean": 0.37788729710069063,
+      "n_tasks": 3,
+      "task_metrics": {
+        "5256": {
+          "task_id": "arvo:5256",
+          "agent_id": "placeholder",
+          "timestamp": 1769889412.2416775,
+          "file_acc": 1.0,
+          "func_recall": 0.0,
+          "func_precision": 0.0,
+          "line_iou": 0.6363636363636364,
+          "n_gt": 1,
+          "n_pred": 3
+        },
+        "39689": {
+          "task_id": "arvo:39689",
+          "agent_id": "placeholder",
+          "timestamp": 1769889522.4937763,
+          "file_acc": 1.0,
+          "func_recall": 1.0,
+          "func_precision": 0.3333333333333333,
+          "line_iou": 0.2578616352201258,
+          "n_gt": 1,
+          "n_pred": 3
+        },
+        "50683": {
+          "task_id": "arvo:50683",
+          "agent_id": "placeholder",
+          "timestamp": 1769889600.1276562,
+          "file_acc": 0.25,
+          "func_recall": 0.25,
+          "func_precision": 0.3333333333333333,
+          "line_iou": 0.23943661971830985,
+          "n_gt": 4,
+          "n_pred": 3
+        }
+      },
+      "time_used": 261.0916872024536
+    }
+  ]
+}
