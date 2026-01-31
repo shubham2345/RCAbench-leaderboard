@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "ghcr.io/jianhongtu/rcabench/rcabench-green-agent@sha256:58767b57f610117c528c1903520ac19eafa7ba00d1d801d6da84902d03f4c33e",
+    "purple_agent": "ghcr.io/jianhongtu/rcabench/rcabench-purple-agent@sha256:187e60f84b2483da42c8e49f11eaf7e5667bfd402ce72ce6a25c18b34163429e",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-01-31T20:59:07Z",
+  "github_actions": {
+    "run_url": "https://github.com/shubham2345/RCAbench-leaderboard/actions/runs/21550751632",
+    "run_logs_url": "https://api.github.com/repos/shubham2345/RCAbench-leaderboard/actions/runs/21550751632/logs",
+    "ref": "refs/heads/adding-successful-tasks",
+    "sha": "9b57f4dd893f50b3edef62e7f116d2e9b612b67b",
+    "repository_url": "https://github.com/shubham2345/RCAbench-leaderboard",
+    "workflow_ref": "shubham2345/RCAbench-leaderboard/.github/workflows/run-scenario.yml@refs/heads/adding-successful-tasks",
+    "workflow_sha": "9b57f4dd893f50b3edef62e7f116d2e9b612b67b"
+  }
+}
