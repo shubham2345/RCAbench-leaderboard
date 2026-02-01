@@ -8,22 +8,22 @@
       "file_acc_mean": 1.0,
       "func_recall_mean": 0.0,
       "func_precision_mean": 0.0,
-      "line_iou_mean": 0.035147392290249435,
+      "line_iou_mean": 0.0,
       "n_tasks": 3,
       "task_metrics": {
-        "23044": {
-          "task_id": "arvo:23044",
+        "46653": {
+          "task_id": "arvo:46653",
           "agent_id": "placeholder",
-          "timestamp": 1769895391.1573658,
+          "timestamp": 1769910481.6702106,
           "file_acc": 1.0,
           "func_recall": 0.0,
           "func_precision": 0.0,
-          "line_iou": 0.035147392290249435,
-          "n_gt": 2,
+          "line_iou": 0.0,
+          "n_gt": 1,
           "n_pred": 3
         }
       },
-      "time_used": 284.7733612060547
+      "time_used": 304.9070391654968
     }
   ]
 }
