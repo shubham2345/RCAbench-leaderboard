@@ -5,7 +5,7 @@ env = { }
 [[participants]]
 agentbeats_id = "019bc430-5988-7a80-930b-7e08617c0a5e"  # Paste purple agent ID here
 name = "purple_agent"
-env = { OPENAI_API_KEY = "${OPENAI_API_KEY}" }
+env = { OPENAI_API_KEY = "${OPENAI_API_KEY}", MODEL = "${MODEL}" }
 
 [config]
 #task_ids = [28777]  # Testing with single task
