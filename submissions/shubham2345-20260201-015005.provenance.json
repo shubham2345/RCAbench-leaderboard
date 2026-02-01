@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "ghcr.io/jianhongtu/rcabench/rcabench-green-agent@sha256:7e0de99cd553373254dc5273227bdaf2d3bf5f826a8431137ba9de63b9ac2796",
+    "purple_agent": "ghcr.io/jianhongtu/rcabench/rcabench-purple-agent@sha256:7f96b3a6b90915950951bad927c242e074eac1b32f2d0c9e86729b3c49d9e923",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-02-01T01:50:05Z",
+  "github_actions": {
+    "run_url": "https://github.com/shubham2345/RCAbench-leaderboard/actions/runs/21554441375",
+    "run_logs_url": "https://api.github.com/repos/shubham2345/RCAbench-leaderboard/actions/runs/21554441375/logs",
+    "ref": "refs/heads/main",
+    "sha": "d3731b39d779e624943a0bbcab9e82a479cb4ce2",
+    "repository_url": "https://github.com/shubham2345/RCAbench-leaderboard",
+    "workflow_ref": "shubham2345/RCAbench-leaderboard/.github/workflows/run-scenario.yml@refs/heads/main",
+    "workflow_sha": "d3731b39d779e624943a0bbcab9e82a479cb4ce2"
+  }
+}
